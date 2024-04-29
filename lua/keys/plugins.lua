@@ -1,6 +1,5 @@
 require('keys/alias')
 
-local api = require('nvim-tree.api')
-
+-- Nvim tree shortcuts
 nm('<leader>n', '<cmd>NvimTreeToggle<cr>') 
 nm('<leader>e', '<cmd>NvimTreeFocus<cr>') 
