@@ -4,14 +4,35 @@ vim.g.loaded_netrwPlugin = 1
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Packer
-  use 'neovim/nvim-lspconfig' -- LSP server
-  use {
+  -- use 'neovim/nvim-lspconfig' -- LSP server
+  use 'nvim-tree/nvim-web-devicons' -- Icons for files
+  use { -- Files tree
     'nvim-tree/nvim-tree.lua',
     config = function()
       require('nvim-tree').setup()
     end,
   }
-  use 'nvim-tree/nvim-web-devicons'
+  use {
+    'akinsho/bufferline.nvim',
+    version = '*',
+    dependecies = { 'nvim-tree/nvim-web-devicons' },
+    event = { 'VimEnter' },
+    config = function()
+      require('plugins/bufferline')
+    end,
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    event = { 'VimEnter' },
+    config = function(_, opts)
+      require('nvim-treesitter').setup(opts)
+    end,
+    opts = {
+      ensure_installed = {'lua', 'vim', 'vimdoc', },
+      highlight = true,
+    },
+  }
   --[[
   use {
     'onsails/lspkind-nvim',
@@ -57,7 +78,5 @@ return require('packer').startup(function()
     'catppuccin/nvim',
     as = 'catppuccin',
   }
-  use 'lunarvim/colorschemes' 
-  --]]
 end)
 
