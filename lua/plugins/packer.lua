@@ -33,6 +33,13 @@ return require('packer').startup(function()
       highlight = true,
     },
   }
+  use {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = function()
+      require('nvim-autopairs').setup()
+    end,
+  }
   --[[
   use {
     'onsails/lspkind-nvim',
