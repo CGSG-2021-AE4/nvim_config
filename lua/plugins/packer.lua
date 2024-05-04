@@ -4,7 +4,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Packer
-  -- use 'neovim/nvim-lspconfig' -- LSP server
   use 'nvim-tree/nvim-web-devicons' -- Icons for files
   use { -- Files tree
     'nvim-tree/nvim-tree.lua',
@@ -29,7 +28,7 @@ return require('packer').startup(function()
       require('nvim-treesitter').setup(opts)
     end,
     opts = {
-      ensure_installed = {'lua', 'vim', 'vimdoc', },
+      ensure_installed = { 'lua', 'vim', 'vimdoc' },
       highlight = true,
     },
   }
@@ -40,25 +39,37 @@ return require('packer').startup(function()
       require('nvim-autopairs').setup()
     end,
   }
+
+  -- Color themes
+  use {
+    'rebelot/kanagawa.nvim',
+  }
+  use 'folke/tokyonight.nvim' 
+  use {
+    'catppuccin/nvim',
+    as = 'catppuccin',
+  }
+
+  -- LSP server and dependencies
+  -- use 'neovim/nvim-lspconfig'
   --[[
   use {
     'onsails/lspkind-nvim',
     config = function()
-      require('plugins/lspkind')
+      -- require('plugins/lspkind').setup()
     end,
   }
   use {
     'williamboman/nvim-lsp-installer',
-    --[[
     config = function()
-      require('plugins/lsp-installer')
+      -- require('plugins/lsp-installer').setup()
     end,
   }
   use {
     'folke/trouble.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
-      require('trouble').setup {}
+      -- require('trouble').setup()
     end,
   }
   use {
@@ -77,13 +88,15 @@ return require('packer').startup(function()
     end,
   }
   --]]
+  -- Copmlete
+  use 'L3MON4D3/LuaSnip'
   use {
-    'rebelot/kanagawa.nvim',
+    'hrsh7th/nvim-cmp',
+    dependencies = { 'L3MON4D3/luasnip' },
+    config = function()
+      require('plugins/cmp')
+    end,
   }
-  use 'folke/tokyonight.nvim' 
-  use {
-    'catppuccin/nvim',
-    as = 'catppuccin',
-  }
+  
 end)
 
