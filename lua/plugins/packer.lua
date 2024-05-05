@@ -5,6 +5,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Packer
   use 'nvim-tree/nvim-web-devicons' -- Icons for files
+  use 'yorickpeterse/nvim-window'
   use { -- Files tree
     'nvim-tree/nvim-tree.lua',
     config = function()
@@ -51,7 +52,21 @@ return require('packer').startup(function()
   }
 
   -- LSP server and dependencies
-  -- use 'neovim/nvim-lspconfig'
+  use {
+    'williamboman/mason.nvim',
+    opts = {
+      ensure_installed = {
+        'lua-language-server',
+      }
+    }
+  }
+  use 'williamboman/mason-lspconfig.nvim'
+  use {
+    'neovim/nvim-lspconfig',
+    config = function()
+      require('plugins/lspconfig')
+    end,
+  } 
   --[[
   use {
     'onsails/lspkind-nvim',
@@ -92,7 +107,16 @@ return require('packer').startup(function()
   use 'L3MON4D3/LuaSnip'
   use {
     'hrsh7th/nvim-cmp',
-    dependencies = { 'L3MON4D3/luasnip' },
+    requires = {
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-emoji',
+      'hrsh7th/cmp-nvim-lsp-signature-help',
+      'hrsh7th/cmp-nvim-lua',
+    },
+    -- dependencies = { 'L3MON4D3/luasnip' },
     config = function()
       require('plugins/cmp')
     end,
