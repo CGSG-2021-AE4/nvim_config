@@ -8,6 +8,12 @@ require('mason-lspconfig').setup()
 -- LSP lua server config
 lspconfig.lua_ls.setup({
   capabilities = lsp_capabilities,
+  filetypes = { 'lua' },
+})
+-- C/Cpp LSP server config
+lspconfig.clangd.setup({
+  capabilities = lsp_capabilities,
+  filetypes = { 'c', 'cpp', 'h', 'hpp' },
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
