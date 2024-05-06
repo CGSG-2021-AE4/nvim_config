@@ -1,3 +1,4 @@
+vim.cmd("language en_US")
 require('base/search')
 require('base/tabs')
 require('base/other')

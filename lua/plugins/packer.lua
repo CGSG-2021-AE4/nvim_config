@@ -57,6 +57,7 @@ return require('packer').startup(function()
     opts = {
       ensure_installed = {
         'lua-language-server',
+        'cmake-language-server',
         'clangd',
       }
     }

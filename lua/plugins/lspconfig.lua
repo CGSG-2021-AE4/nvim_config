@@ -15,6 +15,10 @@ lspconfig.clangd.setup({
   capabilities = lsp_capabilities,
   filetypes = { 'c', 'cpp', 'h', 'hpp' },
 })
+-- Cmake LSP server config
+lspconfig.cmake.setup({
+  capabilities = lsp_capabilities,
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
