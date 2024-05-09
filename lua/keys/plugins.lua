@@ -16,3 +16,17 @@ nm('<C-l>', '<C-w>l')
 
 -- Closing the buffer
 nm('<leader>x', '<cmd>bprevious<bar>bd #<CR>')
+
+-- Telescope
+-- local tBuiltin = require('telescope.builtin')
+nm('<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>')
+nm('<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>')
+nm('<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
+nm('<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
+
+-- CMake
+nm('<leader>cg', '<cmd>CMakeGenerate<cr>')
+nm('<leader>cb', '<cmd>CMakeBuild<cr>')
+nm('<leader>cc', '<cmd>CMakeClose<cr>')
+nm('<leader>co', '<cmd>CMakeOpen<cr>')
+-- nm('<leader>cr', '<cmd>CMakeRun')

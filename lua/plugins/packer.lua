@@ -6,6 +6,7 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Packer
   use 'nvim-tree/nvim-web-devicons' -- Icons for files
   use 'yorickpeterse/nvim-window'
+
   use { -- Files tree
     'nvim-tree/nvim-tree.lua',
     config = function()
@@ -42,14 +43,14 @@ return require('packer').startup(function()
   }
 
   -- Color themes
-  use {
-    'rebelot/kanagawa.nvim',
-  }
-  use 'folke/tokyonight.nvim' 
+  use 'rebelot/kanagawa.nvim'
+  -- use 'folke/tokyonight.nvim' 
+  --[[
   use {
     'catppuccin/nvim',
     as = 'catppuccin',
   }
+  --]]
 
   -- LSP server and dependencies
   use {
@@ -71,12 +72,6 @@ return require('packer').startup(function()
   } 
   --[[
   use {
-    'onsails/lspkind-nvim',
-    config = function()
-      -- require('plugins/lspkind').setup()
-    end,
-  }
-  use {
     'williamboman/nvim-lsp-installer',
     config = function()
       -- require('plugins/lsp-installer').setup()
@@ -89,22 +84,8 @@ return require('packer').startup(function()
       -- require('trouble').setup()
     end,
   }
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-emoji',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
-      'hrsh7th/cmp-nvim-lua',
-    },
-    config = function()
-      require('plugins/cmp')
-    end,
-  }
   --]]
+  
   -- Copmlete
   use 'L3MON4D3/LuaSnip'
   use {
@@ -125,6 +106,21 @@ return require('packer').startup(function()
       require('plugins/cmp')
     end,
   }
-  
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+    },
+  }
+  use 'cdelledonne/vim-cmake'
+  --[[ Fucking shit that does not work(invalid build path slash, can't create buffer, something like that???)
+  use {
+    'Civitasv/cmake-tools.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/overseer.nvim',
+    },
+  }
+  --]]
 end)
 

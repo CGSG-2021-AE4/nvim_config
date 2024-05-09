@@ -14,6 +14,13 @@ lspconfig.lua_ls.setup({
 lspconfig.clangd.setup({
   capabilities = lsp_capabilities,
   filetypes = { 'c', 'cpp', 'h', 'hpp' },
+  -- For Cmake
+  on_new_config = function(new_config, new_cmd)
+    local status, cmake = require('cmake-tools')
+    if status then
+      cmake.clang_on_new_config(new_config)
+    end
+  end,
 })
 -- Cmake LSP server config
 lspconfig.cmake.setup({

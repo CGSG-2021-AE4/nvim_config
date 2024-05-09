@@ -1,5 +1,8 @@
 local opt = vim.opt
 
+-- Some basic repferences
+-- vim.g.noshellslash = true
+
 opt.splitright = true
 opt.splitbelow = true
 opt.clipboard = 'unnamedplus'
