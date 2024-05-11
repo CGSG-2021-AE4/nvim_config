@@ -25,8 +25,8 @@ nm('<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
 nm('<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
 
 -- CMake
-nm('<leader>cg', '<cmd>CMakeGenerate<cr>')
-nm('<leader>cb', '<cmd>CMakeBuild<cr>')
-nm('<leader>cc', '<cmd>CMakeClose<cr>')
-nm('<leader>co', '<cmd>CMakeOpen<cr>')
+nm('<leader>cg', '<cmd>CMake configure<cr>')
+nm('<leader>cb', '<cmd>CMake build_all<cr>')
+-- nm('<leader>cc', '<cmd>CMakeClose<cr>')
+-- nm('<leader>co', '<cmd>CMakeOpen<cr>')
 -- nm('<leader>cr', '<cmd>CMakeRun')

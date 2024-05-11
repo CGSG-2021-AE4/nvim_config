@@ -112,8 +112,13 @@ return require('packer').startup(function()
       'nvim-lua/plenary.nvim',
     },
   }
-  use 'cdelledonne/vim-cmake'
-  --[[ Fucking shit that does not work(invalid build path slash, can't create buffer, something like that???)
+  use {
+    'Shatur/neovim-cmake',
+    config = function()
+      require('plugins/cmake')
+    end,
+  }
+  --[[ Fucking shit that does not work(still is not ready)
   use {
     'Civitasv/cmake-tools.nvim',
     requires = {

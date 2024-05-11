@@ -14,6 +14,11 @@ lspconfig.lua_ls.setup({
 lspconfig.clangd.setup({
   capabilities = lsp_capabilities,
   filetypes = { 'c', 'cpp', 'h', 'hpp' },
+  --[[
+  init_options = {
+    compilationDatabasePath = './out/Debug',
+  },
+  --]]
   -- For Cmake
   on_new_config = function(new_config, new_cmd)
     local status, cmake = require('cmake-tools')
