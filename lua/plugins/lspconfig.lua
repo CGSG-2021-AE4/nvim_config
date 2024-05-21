@@ -9,7 +9,16 @@ require('mason-lspconfig').setup()
 lspconfig.lua_ls.setup({
   capabilities = lsp_capabilities,
   filetypes = { 'lua' },
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+    },
+  },
 })
+
 -- C/Cpp LSP server config
 lspconfig.clangd.setup({
   capabilities = lsp_capabilities,

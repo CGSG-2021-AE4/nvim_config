@@ -15,7 +15,7 @@ nm('<C-k>', '<C-w>k')
 nm('<C-l>', '<C-w>l')
 
 -- Closing the buffer
-nm('<leader>x', '<cmd>bprevious<bar>bd #<CR>')
+nm('<leader>x', '<cmd>Bdelete<CR>')
 
 -- Telescope
 -- local tBuiltin = require('telescope.builtin')
@@ -27,6 +27,8 @@ nm('<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
 -- CMake
 nm('<leader>cg', '<cmd>CMake configure<cr>')
 nm('<leader>cb', '<cmd>CMake build_all<cr>')
+nm('<leader>cs', '<cmd>CMake select_target<cr>')
+nm('<leader>cr', '<cmd>CMake run<cr>')
 -- nm('<leader>cc', '<cmd>CMakeClose<cr>')
 -- nm('<leader>co', '<cmd>CMakeOpen<cr>')
 -- nm('<leader>cr', '<cmd>CMakeRun')

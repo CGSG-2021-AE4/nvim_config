@@ -2,7 +2,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.cmd [[packadd packer.nvim]]
-return require('packer').startup(function()
+return require('packer').startup(function( use )
   use 'wbthomason/packer.nvim' -- Packer
   use 'nvim-tree/nvim-web-devicons' -- Icons for files
   use 'yorickpeterse/nvim-window'
@@ -22,6 +22,43 @@ return require('packer').startup(function()
       require('plugins/bufferline')
     end,
   }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = {
+      'nvim-tree/nvim-web-devicons',
+      --opt = true,
+    },
+    config = function()
+      require('lualine').setup({
+        options = {
+          theme = 'codedark',
+          section_separators = { left = '', right = '' },
+          component_separators = { left = '', right = '' },
+          disabled_filetypes = {
+            statusline = {
+              'packer',
+              'NVimTree',
+            },
+          },
+        },
+        extensions = {
+          'nvim-tree',
+        },
+      })
+    end,
+  }
+  -- Key cheetsheet
+  --[[
+  use {
+    'folke/which-key.nvim',
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require('whiklch-key').setup({
+
+      })
+  }
+  --]]
   use {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -60,6 +97,7 @@ return require('packer').startup(function()
         'lua-language-server',
         'cmake-language-server',
         'clangd',
+        'pyright',
       }
     }
   }
@@ -106,6 +144,7 @@ return require('packer').startup(function()
       require('plugins/cmp')
     end,
   }
+  use 'famiu/bufdelete.nvim'
   use {
     'nvim-telescope/telescope.nvim',
     requires = {
