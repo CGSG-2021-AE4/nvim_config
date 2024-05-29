@@ -1,10 +1,6 @@
 local lspconfig = require('lspconfig')
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- Setup mason
-require('mason').setup()
-require('mason-lspconfig').setup()
-
 -- LSP lua server config
 lspconfig.lua_ls.setup({
   capabilities = lsp_capabilities,
@@ -36,6 +32,21 @@ lspconfig.clangd.setup({
     end
   end,
 })
+
+-- Rust LSP server config
+lspconfig.rust_analyzer.setup({
+  capabilities = lsp_capabilities,
+  filetypes = { 'rust' },
+  root_dir = require('lspconfig/util').root_pattern('Cargo.toml'),
+  settings = {
+    ['rust_analyzer'] = {
+      cargo = {
+        allFeatures = true,
+      },
+    },
+  },
+})
+
 -- Cmake LSP server config
 lspconfig.cmake.setup({
   capabilities = lsp_capabilities,

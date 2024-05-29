@@ -1,3 +1,3 @@
 if exists(':GuiFont')
-  GuiFont! Hack Nerd Font Mono:h11
+  GuiFont! JetBrainsMono NFM:h11
 endif

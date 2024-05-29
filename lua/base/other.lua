@@ -15,6 +15,7 @@ opt.number = true
 --opt.relativenumber = true
 opt.numberwidth = 4
 opt.wrap = false
+vim.o.signcolumn = 'number'
 
 -- Empty chars
 opt.list = true

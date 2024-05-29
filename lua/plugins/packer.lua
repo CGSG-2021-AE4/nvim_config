@@ -47,6 +47,15 @@ return require('packer').startup(function( use )
       })
     end,
   }
+  use {
+    'rust-lang/rust.vim',
+    requires = {
+      'rust-lang/rustfmt.vim',
+    },
+    config = function()
+      vim.g.rustfmt_autosave = 1
+    end,
+  }
   -- Key cheetsheet
   --[[
   use {
@@ -67,7 +76,8 @@ return require('packer').startup(function( use )
       require('nvim-treesitter').setup(opts)
     end,
     opts = {
-      ensure_installed = { 'lua', 'vim', 'vimdoc' },
+      ensure_installed = { 'lua', 'vim', 'vimdoc', 'rust', 'toml' },
+      auto_install = true,
       highlight = true,
     },
   }
@@ -80,7 +90,18 @@ return require('packer').startup(function( use )
   }
 
   -- Color themes
-  use 'rebelot/kanagawa.nvim'
+  use {
+    'rebelot/kanagawa.nvim',
+    colors = {
+      theme = {
+        all = {
+          ui = {
+            bg_gutter = "none"
+          }
+        }
+      }
+    },
+  }
   -- use 'folke/tokyonight.nvim' 
   --[[
   use {
@@ -90,24 +111,35 @@ return require('packer').startup(function( use )
   --]]
 
   -- LSP server and dependencies
+  use 'williamboman/mason.nvim'
   use {
-    'williamboman/mason.nvim',
-    opts = {
-      ensure_installed = {
-        'lua-language-server',
-        'cmake-language-server',
-        'clangd',
-        'pyright',
-      }
-    }
+    'williamboman/mason-lspconfig.nvim',
+    requires = {
+      'williamboman/mason.nvim',
+    },
+    config = function()
+      require('mason').setup()
+      require('mason-lspconfig').setup({
+        ensure_installed = {
+            'lua_ls',
+            'cmake',
+            'clangd',
+            'pyright',
+            'rust_analyzer',
+          }
+        })
+    end,
   }
-  use 'williamboman/mason-lspconfig.nvim'
   use {
     'neovim/nvim-lspconfig',
+    requires = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+    },
     config = function()
       require('plugins/lspconfig')
     end,
-  } 
+  }
   --[[
   use {
     'williamboman/nvim-lsp-installer',
@@ -123,7 +155,6 @@ return require('packer').startup(function( use )
     end,
   }
   --]]
-  
   -- Copmlete
   use 'L3MON4D3/LuaSnip'
   use {
@@ -150,6 +181,13 @@ return require('packer').startup(function( use )
     requires = {
       'nvim-lua/plenary.nvim',
     },
+    config = function()
+      require('telescope').setup({
+        file_ignore_patterns = {
+          '.git/'
+        },
+      })
+    end,
   }
   use {
     'Shatur/neovim-cmake',

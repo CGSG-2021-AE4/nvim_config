@@ -24,11 +24,14 @@ nm('<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>')
 nm('<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>')
 nm('<leader>fh', '<cmd>lua require("telescope.builtin").help_tags()<cr>')
 
+-- Some LSP bindings
 -- CMake
 nm('<leader>cg', '<cmd>CMake configure<cr>')
 nm('<leader>cb', '<cmd>CMake build_all<cr>')
 nm('<leader>cs', '<cmd>CMake select_target<cr>')
 nm('<leader>cr', '<cmd>CMake run<cr>')
+-- Rust
+nm('<leader>rr', '<cmd>RustRun<cr>')
 -- nm('<leader>cc', '<cmd>CMakeClose<cr>')
 -- nm('<leader>co', '<cmd>CMakeOpen<cr>')
 -- nm('<leader>cr', '<cmd>CMakeRun')
